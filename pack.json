@@ -1,9 +1,9 @@
 {
   "uuid": "local.smooth-volume",
-  "name": "平滑音量 · 0–100",
+  "name": "Smooth Volume · 0–100",
   "version": "1.0.0",
   "author": "Local customization",
-  "description": "适用于 PvZ2 Gardendless 0.15.0。主菜单、暂停菜单的音乐和音效滑条改为分贝均匀变化；0静音，1–100逐步增加。保留当前实际音量和原始最大音量，不修改玩家存档。",
+  "description": "For PvZ2 Gardendless 0.15.0. Music and sound effects sliders in the main and pause menus use evenly spaced decibel steps. 0 mutes; 1–100 gradually increases volume. Preserves current loudness and the original maximum volume.",
   "packFormatVersion": 1,
   "apiVersion": 2,
   "gpNextVersion": ">=1.5.2 <1.6.0",

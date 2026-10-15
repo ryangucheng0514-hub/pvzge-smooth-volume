@@ -1,58 +1,58 @@
-# PvZGE 平滑音量 / Smooth Volume
+# PvZGE Smooth Volume
 
-为 **PvZ2 Gardendless 0.15.0 / GP-Next 1.5.2** 制作的音量曲线模组。调整主菜单和暂停菜单中的音乐、音效滑条，让低音量也有足够的调节空间。
+A volume-curve mod for **PvZ2 Gardendless 0.15.0 / GP-Next 1.5.2**. It gives the music and sound effects sliders in the main and pause menus a wider useful adjustment range, especially at low volumes.
 
-**状态：实验性版本。** 已完成针对官方 0.15.0 原始音量回调的代码测试，尚未完成游戏内安装验证和试听。其他游戏版本的兼容性未验证。
+**Status: experimental.** Code tests against the original volume callbacks from the official 0.15.0 build have passed. Installation and listening tests in the game are still pending. Compatibility with other game versions has not been verified.
 
-## 下载与安装
+## Download and install
 
-[下载可直接导入的补丁 ZIP](https://github.com/ryangucheng0514-hub/pvzge-smooth-volume/releases/download/v1.0.0/pvzge-smooth-volume-1.0.0.zip)。请使用这个安装包；GitHub 的“Download ZIP”是整个源码仓库。
+[Download the importable mod ZIP](https://github.com/ryangucheng0514-hub/pvzge-smooth-volume/releases/download/v1.0.0/pvzge-smooth-volume-1.0.0.zip). Use this package for installation. GitHub's **Code > Download ZIP** downloads the entire source repository.
 
-1. 在游戏中按 **F9** 打开 GP-Next。
-2. 进入 **实验性 / Experimental**，开启 **JS Modding**，阅读并确认游戏的脚本提示。
-3. 进入 **模组 / Mods → 导入 ZIP / Import ZIP**，选择下载的补丁，无需解压。
-4. 勾选 **平滑音量 · 0–100**，保存并应用；如果提示重启，结束当前游戏后重启。
+1. Press **F9** in the game to open GP-Next.
+2. Open **Experimental**, enable **JS Modding**, and read and confirm the game's script warning.
+3. Open **Mods > Import ZIP** and select the downloaded mod ZIP without extracting it.
+4. Enable **Smooth Volume · 0–100**, save and apply. If prompted, finish your current game and restart.
 
-也可以在模组详情面板直接输入音乐、音效的整数音量（0–100）。停用时取消勾选模组并应用，按游戏提示重启。
+You can also enter integer music and sound effects levels (0–100) directly in the mod's details panel. To disable the mod, uncheck it, save and apply, and restart if prompted.
 
-## 音量曲线
+## Volume curve
 
-| 滑条位置 | 对应原生音频增益 | 相对最大音量 |
+| Slider position | Native audio gain | Level relative to maximum |
 | --- | --- | --- |
-| 0 | 0 | 完全静音 |
+| 0 | 0 | Muted |
 | 1 | 0.001 | −60 dB |
-| 25 | 0.005337 | 约 −45.45 dB |
-| 50 | 0.030539 | 约 −30.30 dB |
-| 75 | 0.174753 | 约 −15.15 dB |
+| 25 | 0.005337 | About −45.45 dB |
+| 50 | 0.030539 | About −30.30 dB |
+| 75 | 0.174753 | About −15.15 dB |
 | 100 | 1 | 0 dB |
 
-1–100 的相邻整数刻度约相差 **0.606 dB**；0–1 之间平滑过渡到静音。分贝均匀不代表每个人主观听感严格等差。
+Each integer step from 1 to 100 adds approximately **0.606 dB**. Positions between 0 and 1 fade smoothly to silence. Even decibel steps do not guarantee identical perceived loudness changes for every listener.
 
-启用时保留当前实际音量，仅改变滑条显示位置。例如，原生增益为 1% 时，新滑条约在 34%。保存的仍是游戏原生增益，停用后不会因刻度恢复而改变实际响度。
+Enabling the mod preserves the current loudness and changes the displayed slider position. For example, a native gain of 1% appears at about 34% on the new scale. Settings continue to store native audio gains, so disabling the mod preserves the actual loudness.
 
-## 实现范围
+## Implementation and scope
 
-- 包装 `SettingWindow` 和 `PauseScreen` 的音量回调及显示更新。
-- 沿用游戏自身的设置保存操作，音乐和音效独立。
-- 不修改游戏 EXE、玩家进度或货币。
-- 不包含游戏资源、个人存档、网络请求或外部依赖。
+- Wraps the volume callbacks and display updates in `SettingWindow` and `PauseScreen`.
+- Uses the game's existing settings save operations, with independent music and sound effects controls.
+- Does not modify the game EXE, player progress, or currency.
+- Includes no game assets, personal saves, network requests, or external dependencies.
 
-代码测试覆盖原始主菜单/暂停菜单回调、静音与最大音量、分贝步长、通道独立性、保存数值、连续更新稳定性、数字输入以及停用/重载逻辑。仍需实际游戏验证模组接口和最终听感。
+Code tests cover the original main and pause menu callbacks, mute and maximum levels, decibel steps, independent channels, saved values, repeated updates, numeric input, and disabling/reloading. The mod interface and final listening experience still need testing in the game.
 
-## 源码与打包
+## Source and packaging
 
-`pack.json` 是模组清单，`scripts/main.js` 是完整入口。修改后运行：
+`pack.json` is the mod manifest; `scripts/main.js` is the complete entry point. After editing, run:
 
 ```sh
 python build.py
 ```
 
-生成 `dist/pvzge-smooth-volume-<版本>.zip`，ZIP 根目录包含 `pack.json`。
+This creates `dist/pvzge-smooth-volume-<version>.zip`, with `pack.json` at the ZIP root. The package also includes `scripts/main.js` and `INSTALL.txt`.
 
-## 参考
+## References
 
-- [官方模组安装说明](https://pvzge.com/en/guide/mod/gp-next)
-- [官方 JavaScript 模组 API](https://pvzge.com/en/guide/mod/gp-next-api)
-- [对照的官方 0.15.0 构建](https://github.com/Gzh0821/pvzge_web/blob/0e4a053/docs/assets/main/index.js)
+- [Official mod installation guide](https://pvzge.com/en/guide/mod/gp-next)
+- [Official JavaScript mod API](https://pvzge.com/en/guide/mod/gp-next-api)
+- [Official 0.15.0 build used for comparison](https://github.com/Gzh0821/pvzge_web/blob/0e4a053/docs/assets/main/index.js)
 
-这是独立制作的非官方模组。
+This is an independent, unofficial mod.

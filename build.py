@@ -7,7 +7,7 @@ root = Path(__file__).resolve().parent
 manifest = json.loads((root / 'pack.json').read_text(encoding='utf-8'))
 destination = root / 'dist' / f"pvzge-smooth-volume-{manifest['version']}.zip"
 destination.parent.mkdir(exist_ok=True)
-members = ['pack.json', 'scripts/main.js', '使用说明.txt']
+members = ['pack.json', 'scripts/main.js', 'INSTALL.txt']
 assert manifest['js']['entry'] in members
 with zipfile.ZipFile(destination, 'w', zipfile.ZIP_DEFLATED) as archive:
     for name in members:
