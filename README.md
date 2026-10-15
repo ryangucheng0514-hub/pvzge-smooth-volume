@@ -6,7 +6,7 @@ A volume-curve mod for **PvZ2 Gardendless 0.15.0 / GP-Next 1.5.2**. It gives the
 
 ## Download and install
 
-[Download the importable mod ZIP](https://github.com/ryangucheng0514-hub/pvzge-smooth-volume/releases/download/v1.0.0/pvzge-smooth-volume-1.0.0.zip). Use this package for installation. GitHub's **Code > Download ZIP** downloads the entire source repository.
+[Download the importable mod ZIP](https://github.com/ryangucheng0514-hub/pvzge-smooth-volume/releases/download/v1.0.0-english/pvzge-smooth-volume-1.0.0.zip). Use this package for installation. GitHub's **Code > Download ZIP** downloads the entire source repository.
 
 1. Press **F9** in the game to open GP-Next.
 2. Open **Experimental**, enable **JS Modding**, and read and confirm the game's script warning.
