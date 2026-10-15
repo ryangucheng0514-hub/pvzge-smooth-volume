@@ -19,7 +19,7 @@ export default {
     const engine = ctx.unsafe?.engine;
     const hooks = ctx.unsafe?.hooks;
     if (!engine?.getModuleExport || !engine?.getCc || !hooks?.wrapMethod) {
-      throw new Error('平滑音量需要 GP-Next 1.5.2 的引擎与方法接口。');
+      throw new Error('Smooth Volume requires the engine and method-hook interfaces from GP-Next 1.5.2.');
     }
     const get = (file, name) => engine.getModuleExport('chunks:///_virtual/' + file + '.ts', name);
     const music = get('SoundsController', 'MusicController');
@@ -28,11 +28,11 @@ export default {
     const pause = get('PauseScreen', 'PauseScreen');
     const cc = engine.getCc();
     if (!music || !sfx || !cc?.ProgressBar || !settings?.prototype || !pause?.prototype) {
-      throw new Error('未找到 0.15.0 的音量控件；补丁未启用。');
+      throw new Error('Volume controls for version 0.15.0 were not found; the mod was not enabled.');
     }
     for (const owner of [settings, pause]) {
       for (const name of ['start', 'update', 'musicSlide', 'sfxSlide']) {
-        if (typeof owner.prototype[name] !== 'function') throw new Error('不兼容的音量控件：' + name);
+        if (typeof owner.prototype[name] !== 'function') throw new Error('Incompatible volume control: ' + name);
       }
     }
     const windows = new Set();
@@ -87,18 +87,18 @@ export default {
     }
     function percent(gain) { return Math.round(toPosition(gain) * 100); }
     ctx.controls.definePanel({
-      title: '平滑音量（0–100）',
-      groups: [{ title: '0 静音 · 1–100 按分贝逐级增加', items: [
-        { type: 'number', key: 'music', label: '音乐音量', min: 0, max: 100, step: 1,
+      title: 'Smooth Volume (0–100)',
+      groups: [{ title: '0: mute · 1–100: evenly spaced decibel steps', items: [
+        { type: 'number', key: 'music', label: 'Music volume', min: 0, max: 100, step: 1,
           getValue: () => percent(music.MusicVolume),
           setValue: value => { music.setMusicVolume(toGain(Number(value) / 100)); for (const view of windows) render(view); } },
-        { type: 'number', key: 'sfx', label: '音效音量', min: 0, max: 100, step: 1,
+        { type: 'number', key: 'sfx', label: 'Sound effects volume', min: 0, max: 100, step: 1,
           getValue: () => percent(sfx.SoundFXVolume),
           setValue: value => { sfx.setSoundFxVolume(toGain(Number(value) / 100)); for (const view of windows) render(view); } }
       ] }]
     });
-    ctx.log.info('平滑音量 1.0.0：主菜单和暂停菜单已使用分贝曲线，当前实际音量保持不变。');
-    ctx.ui.toast('平滑音量已启用：现在可使用整个音量条调节。', 'success');
+    ctx.log.info('Smooth Volume 1.0.0: main and pause menus now use a decibel curve. Current loudness is preserved.');
+    ctx.ui.toast('Smooth Volume enabled: use the full slider range to adjust volume.', 'success');
     return () => {
       enabled = false;
       for (const dispose of disposers.reverse()) dispose();
