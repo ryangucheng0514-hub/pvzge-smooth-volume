@@ -1,0 +1,37 @@
+Smooth Volume · 0–100 (version 1.0.0)
+
+Compatibility: PvZ2 Gardendless 0.15.0, GP-Next 1.5.2.
+Status: experimental. Installation and listening tests in the game are pending.
+
+WHAT IT DOES
+Music and sound effects sliders in the main and pause menus use a decibel curve.
+0 is fully muted; 1 is -60 dB; each integer step from 1 to 100 adds about 0.606 dB.
+100 keeps the game's original maximum volume.
+Perceived loudness also depends on your headphones, speakers, system volume, and audio content.
+Even decibel steps do not guarantee identical perceived loudness changes for every listener.
+Enabling the mod preserves current loudness. A native gain of 1% appears at about 34% on the new slider.
+You can enter integer levels from 0 to 100 directly in the mod's details panel.
+
+INSTALL
+1. Press F9 in the game to open GP-Next.
+2. Open Experimental, enable JS Modding, and read and confirm the game's script warning.
+3. Open Mods > Import ZIP and select this mod ZIP without extracting it.
+4. Enable Smooth Volume · 0–100, save and apply. If prompted, finish your current game and restart.
+
+REMOVE
+Uncheck the mod in Mods, save and apply, and restart if prompted.
+The game continues to store native audio gains. Disabling the mod preserves actual loudness;
+the sliders return to their original scale.
+
+SCOPE AND VALIDATION
+Changes the volume control mapping and uses the game's existing volume save operations.
+Does not modify player progress, currency, or the game EXE. No network requests or extra game assets.
+Tested against the original callbacks from the official 0.15.0 build, covering the main and pause
+menus, mute, maximum volume, saved values, and disabling the mod.
+Installation, startup, and listening have not been verified in the game on this computer.
+
+Official mod installation guide:
+https://pvzge.com/en/guide/mod/gp-next
+
+Official 0.15.0 build used for comparison:
+https://github.com/Gzh0821/pvzge_web/blob/0e4a053/docs/assets/main/index.js
